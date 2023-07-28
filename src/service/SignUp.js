@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { call } from "./service/ApiService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import "./css/login.css";
+import "../css/login.css";
 
-function Login() {
-  //인풋 값 관리 스테이트
+function SignUp() {
   const [inputs, setInputs] = useState({
     userId: "",
     userPw: "",
@@ -18,33 +16,15 @@ function Login() {
       [name]: value,
     });
   };
-
-  const loginHandle = () => {
-    //로그인 버튼 클릭 시 동작
-    //확인해야할 내용 : 아이디,비밀번호 모두입력하여 로그인버튼 클릭하였는지
-    if (inputs.userId === "") alert("아이디를 입력해주세요!");
-    else if (inputs.userPw === "") alert("비밀번호를 입력해주세요!");
-    else {
-      call("/auth/signin", "POST", inputs).then((re) => console.log(re));
-    }
-  };
-
-  const signUpHandle = () => {
-    //회원가입 버튼 클릭 시 동작
-    //회원가입 페이지로 이동
-    window.location.href = "/signUp";
-  };
-
   let maxwidth = {
     maxWidth: window.screen.width * 0.4,
   };
-
   return (
     <div className="h-100 loginbody d-flex">
       <div className="container-fluid text-center" style={maxwidth}>
         <div className="card">
           <div className="card-body bg-white ">
-            <h1 className="h3 mb-3 fw-normal">로그인</h1>
+            <h1 className="h3 mb-3 fw-normal">회원가입</h1>
             <div className="mb-3 row">
               <label for="userId" className="col-sm-2 col-form-label">
                 아이디
@@ -59,6 +39,7 @@ function Login() {
                 />
               </div>
             </div>
+
             <div className="mb-3 row">
               <label for="userPw" className="col-sm-2 col-form-label">
                 비밀번호
@@ -73,24 +54,64 @@ function Login() {
                 />
               </div>
             </div>
+            <div className="mb-3 row">
+              <label for="userEmail" className="col-sm-2 col-form-label">
+                이메일
+              </label>
+              <div className="col-sm-10">
+                <input
+                  className="form-control"
+                  type="email"
+                  id="userEmail"
+                  name="userEmail"
+                  onChange={inputChange}
+                />
+              </div>
+            </div>
+            <div className="mb-3 row">
+              <label for="userName" className="col-sm-2 col-form-label">
+                닉네임
+              </label>
+              <div className="col-sm-10">
+                <input
+                  className="form-control"
+                  type="text"
+                  id="userName"
+                  name="userName"
+                  onChange={inputChange}
+                />
+              </div>
+            </div>
+            <div className="mb-3 row">
+              <label for="userPhone" className="col-sm-2 col-form-label">
+                연락처
+              </label>
+              <div className="col-sm-10">
+                <input
+                  className="form-control"
+                  type="number"
+                  id="userPhone"
+                  name="userPhone"
+                  onChange={inputChange}
+                />
+              </div>
+            </div>
             <div className="m-1">
               <button
-                className="w-100 btn btun-lg btn-primary"
+                className="w-100 btn btun-lg btn btn-primary"
                 type="submit"
-                id="loginBtn"
-                onClick={loginHandle}
+                id="signUp"
               >
-                로그인
+                회원가입
               </button>
             </div>
             <div className="m-1">
               <button
-                className="w-100 btn btun-lg btn"
+                className="w-100 btn btun-lg btn btn-secondary"
                 type="submit"
                 id="signUp"
-                onClick={signUpHandle}
               >
-                회원가입
+                취소
               </button>
             </div>
           </div>
@@ -101,4 +122,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

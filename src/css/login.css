@@ -2,9 +2,12 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   width: 100%;
-  background-color: rgb(243, 243, 243);
+  background-color: rgba(241, 241, 241, 0.966);
 }
 
 .loginalign {
